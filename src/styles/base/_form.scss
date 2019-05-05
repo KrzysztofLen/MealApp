@@ -1,0 +1,41 @@
+.form {
+	padding: 20px;
+
+	&__form {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		width: 300px;
+	}
+
+	&__control {
+		display: flex;
+		flex-direction: column;
+		margin: 10px 0;
+	}
+
+	&__label {
+		font-size: 12px;
+		padding-bottom: 5px;
+		color: $lightGrey-2;
+	}
+
+	&__buttons {
+		display: flex;
+		justify-content: flex-end;
+	}
+
+	&__submit {
+		padding: 10px 20px;
+		background: $primaryColor;
+		color: white;
+		border: none;
+		cursor: pointer;
+		font-size: 14px;
+		transition: .2s all ease-in;
+
+		&:hover {
+			background: darken($primaryColor, 30%);
+		}
+	}
+}

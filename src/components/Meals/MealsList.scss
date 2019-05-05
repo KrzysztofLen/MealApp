@@ -1,0 +1,59 @@
+.mealsList {
+	margin-bottom: 15px;
+	padding: 20px 0;
+	transition: .4s all ease-in;
+
+	&:hover {
+		background: $lightGrey;
+	}
+
+	&__values {
+		display: flex;
+	}
+
+	&__status {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	&__name {
+		width: 40%;
+		padding-left: 10px;
+		box-sizing: border-box;
+	}
+
+	&__owner {
+		width: 20%;
+		padding-left: 10px;
+	}
+
+	&__prize {
+		width: 20%;
+		padding-left: 10px;
+	}
+
+	&__edits {
+		width: 20%;
+		display: flex;
+		justify-content: flex-end;
+		padding-right: 20px;
+		box-sizing: border-box;
+		align-items: center;
+	}
+
+	&__edit {
+		cursor: pointer;
+		border: 1px solid $lightGrey-2;
+		padding: 2px;
+		border-radius: 5px;
+
+		&:hover {
+			background: $lightGrey-2;
+		}
+	}
+
+	&:nth-child(odd) {
+		background: $lightGrey;
+	}
+}

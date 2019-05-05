@@ -1,0 +1,37 @@
+@import-normalize; /* bring in normalize.css styles */
+
+@import "styles/variable";
+
+// COMPONENTS
+@import "styles/base/base";
+@import "styles/base/form";
+@import "styles/base/buttons";
+@import "components/Page/Page";
+@import "components/Header/Header";
+@import "components/Modal/Modal";
+@import "components/Meals/MealsList";
+@import "components/Orders/OrdersSummary";
+@import "components/Orders/OrdersForm";
+@import "components/Orders/OrdersList";
+@import "components/Navigation/Navigation";
+
+body {
+	margin: 0;
+	font-family: 'Roboto', sans-serif;
+}
+
+.container {
+	margin-top: $headerHeight;
+}
+
+.title {
+	margin: 90px 100px 30px 100px;
+	text-transform: uppercase;
+	font-weight: 200;
+}
+
+.content {
+	background-color: $tabsBackground;
+	border-top: 1px solid $lightGrey;
+	padding: 40px 100px;
+}

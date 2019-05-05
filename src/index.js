@@ -1,12 +1,26 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import ReactDOM from "react-dom";
+import {Provider} from 'react-redux';
+import './App.scss';
+import AppRouter from "./AppRouter";
+import {startFetchOrders} from "./Redux/actions/orders";
+import configureStore from './Redux/store/configureStore';
+import "./firebase/firebase";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const store = configureStore();
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+function Index() {
+	return (
+		<Provider store={store}>
+			<AppRouter/>
+		</Provider>
+	);
+}
+
+ReactDOM.render(<p>Loading...</p>, document.getElementById('root'));
+
+store.dispatch(startFetchOrders()).then(() => {
+	ReactDOM.render(<Index />, document.getElementById('root'));
+});
+
+export default Index;

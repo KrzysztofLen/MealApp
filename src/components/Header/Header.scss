@@ -1,0 +1,12 @@
+.header {
+	&__title {
+		width: 85%;
+		text-align: left;
+	}
+
+	&__button {
+		width: 15%;
+		text-align: right;
+		border-left: 1px solid #ccc;
+	}
+}
