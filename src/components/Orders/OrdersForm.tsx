@@ -4,7 +4,8 @@ import peoplesName, {OrdersEnum, ErrorMessageEnum} from "../../main";
 
 interface IProps {
     onSubmit: (order: any) => void,
-    onClick: (e: any) => void
+    onClick: (e: any) => void,
+    isOpen: boolean
 }
 
 interface IState {
@@ -37,12 +38,12 @@ class OrderForm extends React.Component<IProps, IState> {
 
         if (!this.state.fields.orderName) {
             formIsValid = false;
-            errors["orderName"] = ErrorMessageEnum.provideValue;
+            errors.orderName = ErrorMessageEnum.provideValue;
         }
 
         if (!this.state.fields.orderOwner) {
             formIsValid = false;
-            errors["orderOwner"] = ErrorMessageEnum.provideValue;
+            errors.orderOwner = ErrorMessageEnum.provideValue;
         }
 
         this.setState({errors});
@@ -60,6 +61,7 @@ class OrderForm extends React.Component<IProps, IState> {
 
     private onSubmit = (e: FormEvent) => {
         e.preventDefault();
+
         this.handleValidation();
 
         if (this.handleValidation()) {

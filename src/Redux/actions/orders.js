@@ -55,3 +55,17 @@ export const startEditOrder = (updates) => (dispatch) => {
 		dispatch(editOrder(updates));
 	});
 };
+
+export const DELETE_ORDER = "DELETE_ORDER";
+
+// DELETE_ORDER
+export const deleteOrder = (id) => ({
+	type: DELETE_ORDER,
+	id
+});
+
+export const startDeleteOrder = (id) => (dispatch) => {
+	return database.ref(`orders/${id}`).remove().then(() => {
+		dispatch(deleteOrder(id));
+	});
+};

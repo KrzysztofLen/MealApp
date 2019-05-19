@@ -27,7 +27,8 @@ class MealsList extends React.Component<IProps, IState> {
         this.setState({open: true});
     }
 
-    onDialogClose = () => {
+    onDialogClose = (e: any) => {
+        e.preventDefault();
         this.setState({open: false});
     };
 
@@ -36,7 +37,7 @@ class MealsList extends React.Component<IProps, IState> {
         this.setState({open: false});
     }
 
-    render() {
+    public render(): JSX.Element {
         return (
             <div className={"mealsList"}>
                 <div className={"mealsList__values"}>
@@ -48,9 +49,9 @@ class MealsList extends React.Component<IProps, IState> {
                     </div>
                 </div>
 
-                <Modal isOpen={this.state.open} onDialogClose={this.onDialogClose} title={"Edit Meal"}
+                <Modal isOpen={this.state.open} onClick={this.onDialogClose} title={"Edit Meal"}
                        component={<MealsEditForm onSubmit={this.onSubmit}
-                                                 onClose={this.onDialogClose}
+                                                 onClick={this.onDialogClose}
                                                  meal={this.props}
                                                  order={this.props.order}/>}/>
             </div>

@@ -1,4 +1,4 @@
-import {ADD_ORDERS, EDIT_ORDER, FETCH_ORDERS} from "./../actions/orders";
+import {ADD_ORDERS, EDIT_ORDER, FETCH_ORDERS, DELETE_ORDER} from "./../actions/orders";
 import {ADD_MEAL, EDIT_MEAL} from "../actions/meals";
 import _ from "lodash";
 
@@ -60,6 +60,9 @@ export default (state = orderReducersDefaultState, action) => {
 			});
 		case FETCH_ORDERS:
 			return action.orders;
+		case DELETE_ORDER: {
+			return state.filter(({id}) => id !== action.id);
+		}
 		default:
 			return state;
 	}

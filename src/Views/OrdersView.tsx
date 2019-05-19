@@ -34,7 +34,8 @@ class Order extends React.Component<IProps, IState> {
         this.setState({isOpen: true});
     }
 
-    private onDialogClose = (): void => {
+    private onDialogClose = (e: any): void => {
+        e.preventDefault();
         this.setState({isOpen: false});
     };
 
@@ -48,8 +49,8 @@ class Order extends React.Component<IProps, IState> {
                            </span>
                         <span>Create Order</span>
                     </button>
-                    <Modal isOpen={this.state.isOpen} onDialogClose={this.onDialogClose} title={"Create Order"}
-                           component={<OrderForm onClick={this.onDialogClose} onSubmit={this.onSubmit}/>}/>
+                    <Modal isOpen={this.state.isOpen} onClick={this.onDialogClose} title={"Create Order"}
+                           component={<OrderForm onClick={this.onDialogClose} isOpen={this.state.isOpen} onSubmit={this.onSubmit}/>}/>
                     <OrdersSummary orders={this.props.order.filter(order => order.status === OrdersEnum.opened)}/>
                 </div>
             </div>

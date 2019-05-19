@@ -2,15 +2,33 @@
 	background: white;
 	box-shadow: 5px 5px 5px -2px rgba(0, 0, 0, 0.2);
 	margin-bottom: 15px;
-
+	width: calc(100% - 40px);
 	max-height: 60px;
 	transition: max-height .4s;
 	overflow: hidden;
 
 	cursor: pointer;
 
+	&__container {
+		display: flex;
+	}
+
 	&.open {
 		max-height: 2000px;
+	}
+
+	&__delete {
+		width: 40px;
+		height: 60px;
+		vertical-align: middle;
+		display: flex;
+		align-items: center;
+		cursor: pointer;
+		justify-content: center;
+
+		&:hover {
+			background: $primaryColor;
+		}
 	}
 
 	&__values {

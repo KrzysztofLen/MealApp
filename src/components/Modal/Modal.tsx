@@ -4,7 +4,7 @@ interface IProps {
     isOpen: boolean,
     component: JSX.Element,
     title: string,
-    onDialogClose: () => void
+    onClick: (e: any) => void
 }
 
 interface IState {
@@ -19,7 +19,7 @@ class Modal extends React.Component<IProps, IState> {
                 <div className="modal-card">
                     <header className="modal-card-head">
                         <p className="modal-card-title">{this.props.title}</p>
-                        <button className="delete" aria-label="close" onClick={this.props.onDialogClose}/>
+                        <button className="delete" aria-label="close" onClick={this.props.onClick}/>
                     </header>
                     <section className="modal-card-body">
                         {this.props.component}

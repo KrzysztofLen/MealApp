@@ -17,7 +17,7 @@ interface IMeal {
 
 interface IProps {
     onSubmit: (updates: any) => void,
-    onClose: () => void,
+    onClick: (e: any) => void,
     order: any,
     meal: any
 }
@@ -143,7 +143,7 @@ class MealsEditForm extends React.Component<IProps, IState> {
                         </div>
 
                         <div className={"form__buttons"}>
-                            <button onClick={this.props.onClose} color="primary">Cancel</button>
+                            <button onClick={this.props.onClick} color="primary">Cancel</button>
                             <button className={"form__submit"}>Edit</button>
                         </div>
                     </form>
