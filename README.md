@@ -1,6 +1,12 @@
 # MealApp
 React, Redux, Typescript, Real Time Data, Firebase
 
+### Status:
+`in progress`
+
+# DEMO
+https://meal-app-440ed.firebaseapp.com/
+
 ## Available Scripts
 
 In the project directory, you can run:
