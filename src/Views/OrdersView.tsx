@@ -4,8 +4,7 @@ import OrderForm from "./../components/Orders/OrdersForm";
 import {startAddOrder} from "./../Redux/actions/orders";
 import OrdersSummary from "./../components/Orders/OrdersSummary";
 import Modal from "./../components/Modal/Modal";
-import {StatusEnum} from "../utils";
-import NavLink from "../components/Navigation/Navigation";
+import {OrdersEnum} from "../main";
 
 interface IOrder {
     orderName: string,
@@ -18,28 +17,28 @@ interface IProps {
 }
 
 interface IState {
-    open: boolean
+    isOpen: boolean
 }
 
 class Order extends React.Component<IProps, IState> {
-    state = {
-        open: false
+    state: IState = {
+        isOpen: false
     }
 
-    onSubmit = (order: IOrder) => {
+    private onSubmit = (order: IOrder): void => {
         this.props.startAddOrder(order);
-        this.setState({open: false});
+        this.setState({isOpen: false});
     }
 
-    onDialogOpen = () => {
-        this.setState({open: true});
+    private onDialogOpen = (): void => {
+        this.setState({isOpen: true});
     }
 
-    onDialogClose = () => {
-        this.setState({open: false});
+    private onDialogClose = (): void => {
+        this.setState({isOpen: false});
     };
 
-    render() {
+    public render(): JSX.Element {
         return (
             <div className={"meals_app has-background-grey-darker"}>
                 <div className={"orders"}>
@@ -49,9 +48,9 @@ class Order extends React.Component<IProps, IState> {
                            </span>
                         <span>Create Order</span>
                     </button>
-                    <Modal open={this.state.open} onClose={this.onDialogClose} title={"Create Order"}
-                           component={<OrderForm onClose={this.onDialogClose} onSubmit={this.onSubmit}/>}/>
-                    <OrdersSummary orders={this.props.order.filter(order => order.status === StatusEnum.opened)}/>
+                    <Modal isOpen={this.state.isOpen} onDialogClose={this.onDialogClose} title={"Create Order"}
+                           component={<OrderForm onClick={this.onDialogClose} onSubmit={this.onSubmit}/>}/>
+                    <OrdersSummary orders={this.props.order.filter(order => order.status === OrdersEnum.opened)}/>
                 </div>
             </div>
         );

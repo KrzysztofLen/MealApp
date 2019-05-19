@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import _ from "lodash";
-import peoplesName from "../../utils";
+import peoplesName from "../../main";
 
 enum ErrorMessageEnum {
     provideValue = "FAILURE! You must provide a value",

@@ -7,17 +7,17 @@ interface IProps {
 }
 
 class Page extends React.Component<IProps, {}> {
-    componentDidMount() {
+    public componentDidMount(): void {
         document.title = this.props.title
     }
 
-    renderPageComponent() {
+    private renderPageComponent(): JSX.Element {
         const PageComponent: any = this.props.component;
 
         return <PageComponent/>;
     }
 
-    render() {
+    public render(): JSX.Element {
 
         return (
             <React.Fragment>

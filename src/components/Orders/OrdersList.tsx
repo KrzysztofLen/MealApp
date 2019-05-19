@@ -6,7 +6,7 @@ import MealsForm from "../Meals/MealsForm";
 import Modal from "../Modal/Modal";
 import MealsList from "../Meals/MealsList";
 import _ from "lodash";
-import {StatusEnum} from "./../../utils";
+import {OrdersEnum} from "../../main";
 
 interface IProps {
     id: string,
@@ -92,19 +92,19 @@ class OrdersList extends React.Component<IProps, IState> {
                     {this.props.history !== true && <button onClick={this.onDialogOpen}>
 						Add Meal
 					</button>}
-                    <Modal open={this.state.open} onClose={this.onDialogClose} title={"Create Meal"}
+                    <Modal isOpen={this.state.open} onDialogClose={this.onDialogClose} title={"Create Meal"}
                            component={<MealsForm order={this.props} onSubmit={this.onSubmit}
-                                                 onClose={this.onDialogClose}/>}/>
+                                                 onClick={this.onDialogClose}/>}/>
 
                     <div className={"ordersList__statuses"}>
                         <span className={"ordersList__statusLabel"}>Status:</span>
 
                         <div className={"buttons has-addons"}>
-                            <span className={`button ${this.props.status === StatusEnum.opened ? "is-primary is-selected" : ""}`}
-                                  onClick={this.onChangeOrderStatus.bind(this, StatusEnum.opened)}>
-                                {StatusEnum.opened}</span>
-                            <span className={`button ${this.props.status === StatusEnum.finalized ? "is-primary is-selected" : ""}`}
-                                  onClick={this.onChangeOrderStatus.bind(this, StatusEnum.finalized)}>{StatusEnum.finalized}
+                            <span className={`button ${this.props.status === OrdersEnum.opened ? "is-primary is-selected" : ""}`}
+                                  onClick={this.onChangeOrderStatus.bind(this, OrdersEnum.opened)}>
+                                {OrdersEnum.opened}</span>
+                            <span className={`button ${this.props.status === OrdersEnum.finalized ? "is-primary is-selected" : ""}`}
+                                  onClick={this.onChangeOrderStatus.bind(this, OrdersEnum.finalized)}>{OrdersEnum.finalized}
                             </span>
                         </div>
                     </div>

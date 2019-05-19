@@ -1,5 +1,4 @@
 import React from "react";
-import MealsForm from "./MealsForm";
 import {connect} from "react-redux";
 import Modal from "../Modal/Modal";
 import MealsEditForm from "./MealsEditForm";
@@ -23,7 +22,8 @@ class MealsList extends React.Component<IProps, IState> {
         open: false
     }
 
-    onDialogOpen = () => {
+    onDialogOpen = (e: any) => {
+        e.preventDefault();
         this.setState({open: true});
     }
 
@@ -48,11 +48,11 @@ class MealsList extends React.Component<IProps, IState> {
                     </div>
                 </div>
 
-                <Modal open={this.state.open} onClose={this.onDialogClose} title={"Edit Meal"}
+                <Modal isOpen={this.state.open} onDialogClose={this.onDialogClose} title={"Edit Meal"}
                        component={<MealsEditForm onSubmit={this.onSubmit}
                                                  onClose={this.onDialogClose}
                                                  meal={this.props}
-                                                 order={this.props.order}/> }/>
+                                                 order={this.props.order}/>}/>
             </div>
         )
     }

@@ -1,5 +1,5 @@
 import database from '../../firebase/firebase';
-import {objectsToArray} from "../../utils";
+import {objectsToArray} from "../../utils/utils";
 
 export const ADD_ORDERS = "ADD_ORDERS";
 

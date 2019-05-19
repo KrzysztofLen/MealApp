@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import _ from "lodash";
-import peoplesName from "../../utils";
+import peoplesName from "../../main";
 
 enum ErrorMessageEnum {
     provideValue = "FAILURE! You must provide a value",
@@ -23,7 +23,7 @@ interface IMeal {
 
 interface IProps {
     onSubmit: (meal: IMeal) => void,
-    onClose: () => void,
+    onClick: (e: any) => void,
     order: IOrder
 }
 
@@ -141,7 +141,7 @@ class MealsForm extends React.Component<IProps, IState> {
                         </div>
 
                         <div className={"form__buttons"}>
-                            <button onClick={this.props.onClose} color="primary">Cancel</button>
+                            <button onClick={this.props.onClick} color="primary">Cancel</button>
                             <button className={"form__submit"}>Add</button>
                         </div>
                     </form>

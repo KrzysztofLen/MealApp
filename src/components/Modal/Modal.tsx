@@ -1,26 +1,34 @@
 import React from "react";
 
 interface IProps {
-    onClose: () => void;
-    open: boolean,
+    isOpen: boolean,
     component: JSX.Element,
-    title: string
+    title: string,
+    onDialogClose: () => void
 }
 
-export default (props: IProps) => {
-    return (
-        <div className={`modal ${props.open ? "is-active" : null}`}>
-            <div className="modal-background" />
-            <div className="modal-card">
-                <header className="modal-card-head">
-                    <p className="modal-card-title">{props.title}</p>
-                    <button className="delete" aria-label="close" onClick={props.onClose} />
-                </header>
-                <section className="modal-card-body">
-                    {props.component}
-                </section>
+interface IState {
+    isOpen: boolean
+}
 
+class Modal extends React.Component<IProps, IState> {
+    render() {
+        return (
+            <div className={`modal ${this.props.isOpen ? "is-active" : null}`}>
+                <div className="modal-background"/>
+                <div className="modal-card">
+                    <header className="modal-card-head">
+                        <p className="modal-card-title">{this.props.title}</p>
+                        <button className="delete" aria-label="close" onClick={this.props.onDialogClose}/>
+                    </header>
+                    <section className="modal-card-body">
+                        {this.props.component}
+                    </section>
+
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
+
+export default Modal;

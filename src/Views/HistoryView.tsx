@@ -9,7 +9,7 @@ interface IProps {
 class History extends React.Component<IProps, {}> {
     render() {
         return (
-            <div className={"content"}>
+            <div className={"meals_app has-background-grey-darker"}>
                 <div className={"history"}>
                     <OrdersSummary history={true} orders={this.props.order.filter(order => order.status === "Finalized")}/>
                 </div>
