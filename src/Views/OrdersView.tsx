@@ -1,12 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import Icon from "@material-ui/core/Icon/Icon";
-import Button from "@material-ui/core/Button/Button";
 import OrderForm from "./../components/Orders/OrdersForm";
 import {startAddOrder} from "./../Redux/actions/orders";
 import OrdersSummary from "./../components/Orders/OrdersSummary";
 import Modal from "./../components/Modal/Modal";
 import {StatusEnum} from "../utils";
+import NavLink from "../components/Navigation/Navigation";
 
 interface IOrder {
     orderName: string,
@@ -18,7 +17,11 @@ interface IProps {
     order: Array<any>
 }
 
-class Order extends React.Component<IProps, {}> {
+interface IState {
+    open: boolean
+}
+
+class Order extends React.Component<IProps, IState> {
     state = {
         open: false
     }
@@ -26,7 +29,6 @@ class Order extends React.Component<IProps, {}> {
     onSubmit = (order: IOrder) => {
         this.props.startAddOrder(order);
         this.setState({open: false});
-        //this.props.history.push('/');
     }
 
     onDialogOpen = () => {
@@ -39,13 +41,15 @@ class Order extends React.Component<IProps, {}> {
 
     render() {
         return (
-            <div className={"content"}>
+            <div className={"meals_app has-background-grey-darker"}>
                 <div className={"orders"}>
-                    <Button variant="contained" onClick={this.onDialogOpen}>
-                        <Icon>add</Icon>
-                        Create Order
-                    </Button>
-                    <Modal open={this.state.open} onClose={this.onDialogClose}
+                    <button className={"button is-warning"} onClick={this.onDialogOpen}>
+                         <span className={"icon is-small"}>
+                               <i className={`fas fa-plus-circle`} aria-hidden="true"/>
+                           </span>
+                        <span>Create Order</span>
+                    </button>
+                    <Modal open={this.state.open} onClose={this.onDialogClose} title={"Create Order"}
                            component={<OrderForm onClose={this.onDialogClose} onSubmit={this.onSubmit}/>}/>
                     <OrdersSummary orders={this.props.order.filter(order => order.status === StatusEnum.opened)}/>
                 </div>

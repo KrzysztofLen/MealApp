@@ -32,8 +32,8 @@ class OrdersSummary extends React.Component<IProps, {}> {
                             <label className={"ordersSummary__ownerLabel"}>Owner</label>
                             <label className={"ordersSummary__prizeLabel"}>Prize</label>
                         </div>
-                        {this.props.orders.map((order: any) => {
-                            return <OrdersList key={order.id} history={this.props.history} {...order}/>
+                        {this.props.orders.map((order: any, idx: number) => {
+                            return <OrdersList key={order.id} id={idx} history={this.props.history} {...order}/>
                         })}
                     </React.Fragment>
                 )}

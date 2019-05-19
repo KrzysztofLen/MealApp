@@ -1,4 +1,5 @@
 import database from '../../firebase/firebase';
+import {editOrder} from "./orders";
 
 export const ADD_MEAL = "ADD_MEAL";
 
@@ -15,5 +16,22 @@ export const startAddMeal = (id, meal = {}) => async (dispatch) => {
 			ordersID: id,
 			...meal
 		}));
+	});
+};
+
+export const EDIT_MEAL = "EDIT_MEAL";
+
+// EDIT_ORDER
+export const editMeal = (updates) => ({
+	type: EDIT_MEAL,
+	updates
+});
+
+export const startEditMeal = (updates) => (dispatch) => {
+	return database.ref(`orders/${updates.orderID}/meals/${updates.mealID}`).update({
+		mealName: updates.mealName,
+		orderer: updates.orderer,
+		prize: updates.prize}).then(() => {
+		dispatch(editMeal(updates));
 	});
 };

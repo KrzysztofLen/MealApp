@@ -1,8 +1,4 @@
 import React from "react";
-import Button from "@material-ui/core/Button/Button";
-import TextField from '@material-ui/core/TextField';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
 
 import peoplesName, {StatusEnum} from "../../utils";
 
@@ -26,7 +22,7 @@ class OrderForm extends React.Component<IProps, IState> {
         super(props);
         this.state = {
             orderName: "",
-            orderOwner: "John Travolta",
+            orderOwner: "",
             error: ""
         };
     }
@@ -71,33 +67,51 @@ class OrderForm extends React.Component<IProps, IState> {
     render() {
         return (
             <React.Fragment>
-                <div className={"modal__title"}>
-                    <span>Create Order</span>
-                </div>
                 <div className={"form"}>
                     <form action="" onSubmit={this.onSubmit} className={"form__form"}>
                         {this.state.error != "" && <span className="message__error">{this.state.error}</span>}
 
-                        <div className={"form__control"}>
-                            <label className={"form__label"} htmlFor="">Orders from:</label>
-                            <TextField type="text" placeholder={"Name of the restaurant"}
+                        <div className={"field"}>
+                            <div className={"field-label is-normal"}>
+                                <label className={"form__label"} htmlFor="">Orders from:</label>
+                            </div>
+                            <p className={"control has-icons-left has-icons-right"}>
+                                <input type="text" className={"input"} placeholder={"Name of the restaurant"}
                                        onChange={this.onOrderNameChange}/>
+                                <span className={"icon is-small is-left"}>
+                                    <i className={"fas fa-signature"}/>
+                                </span>
+                            </p>
                         </div>
 
-                        <div className={"form__control"}>
-                            <label className={"form__label"} htmlFor="">Owner name</label>
-                            <Select value={this.state.orderOwner} onChange={this.onOrderOwnerNameChange}>
-                                {peoplesName.map((name: string, idx: number) => {
-                                    return <MenuItem key={idx} value={name}>{name}</MenuItem>
-                                })}
-                            </Select>
+                        <div className={"control"}>
+                            <div className={"field-label is-normal"}>
+                                <label className={"form__label"} htmlFor="">Owner name</label>
+                            </div>
+                            <div className={"select"}>
+                                <select className={"select"} value={this.state.orderOwner}
+                                        onChange={this.onOrderOwnerNameChange}>
+                                    <option value="" disabled>Select owner:</option>
+                                    {peoplesName.map((name: string, idx: number) => {
+                                        return <option key={idx}>{name}</option>
+                                    })}
+                                </select>
+                            </div>
                         </div>
 
                         <div className={"form__buttons"}>
-                            <Button onClick={this.props.onClose} color="primary">
-                                Cancel
-                            </Button>
-                            <button className={"form__submit"}>Create</button>
+                            <button className="button is-danger is-outlined" onClick={this.props.onClose}>
+                                <span>Cancel</span>
+                                <span className="icon is-small">
+                              <i className="fas fa-times"/>
+                            </span>
+                            </button>
+                            <button className={"button is-success"}>
+                                <span className={"icon is-small"}>
+                                  <i className={"fas fa-check"}/>
+                                </span>
+                                <span>Create</span>
+                            </button>
                         </div>
                     </form>
                 </div>

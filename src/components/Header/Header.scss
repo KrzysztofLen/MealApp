@@ -1,12 +1,18 @@
 .header {
+	display: flex;
+	align-items: center;
+
 	&__title {
 		width: 85%;
 		text-align: left;
+
+		.title {
+			margin: 0;
+		}
 	}
 
 	&__button {
 		width: 15%;
 		text-align: right;
-		border-left: 1px solid #ccc;
 	}
 }

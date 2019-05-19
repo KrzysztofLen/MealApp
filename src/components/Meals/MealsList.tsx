@@ -1,19 +1,42 @@
 import React from "react";
-import Icon from '@material-ui/core/Icon';
+import MealsForm from "./MealsForm";
+import {connect} from "react-redux";
+import Modal from "../Modal/Modal";
+import MealsEditForm from "./MealsEditForm";
+import {startEditMeal} from "../../Redux/actions/meals";
 
 interface IProps {
     mealName: string,
     orderer: string,
-    prize: string
+    prize: string,
+    orderID: string,
+    order: any,
+    startEditMeal: (updates: any) => void,
 }
 
-class MealsList extends React.Component<IProps, {}> {
-    onClick = () => {
-        console.log(this.props);
+interface IState {
+    open: boolean
+}
+
+class MealsList extends React.Component<IProps, IState> {
+    state = {
+        open: false
+    }
+
+    onDialogOpen = () => {
+        this.setState({open: true});
+    }
+
+    onDialogClose = () => {
+        this.setState({open: false});
+    };
+
+    onSubmit = (updates: any) => {
+        this.props.startEditMeal(updates);
+        this.setState({open: false});
     }
 
     render() {
-        //console.log(this.props);
         return (
             <div className={"mealsList"}>
                 <div className={"mealsList__values"}>
@@ -21,13 +44,22 @@ class MealsList extends React.Component<IProps, {}> {
                     <div className={"mealsList__owner"}>{this.props.orderer}</div>
                     <div className={"mealsList__prize"}>{(this.props.prize).replace(/,/g, '.')}</div>
                     <div className={"mealsList__edits"}>
-                        <Icon className={"mealsList__edit"} onClick={this.onClick}>edit</Icon>
-                        <Icon>delete_forever</Icon>
+                        <div className={"mealsList__edit"} onClick={this.onDialogOpen}>edit</div>
                     </div>
                 </div>
+
+                <Modal open={this.state.open} onClose={this.onDialogClose} title={"Edit Meal"}
+                       component={<MealsEditForm onSubmit={this.onSubmit}
+                                                 onClose={this.onDialogClose}
+                                                 meal={this.props}
+                                                 order={this.props.order}/> }/>
             </div>
         )
     }
 }
 
-export default MealsList;
+const mapDispatchToProps = (dispatch: any) => ({
+    startEditMeal: (updates: any) => dispatch(startEditMeal(updates))
+});
+
+export default connect(undefined, mapDispatchToProps)(MealsList);

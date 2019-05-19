@@ -1,5 +1,5 @@
 import {ADD_ORDERS, EDIT_ORDER, FETCH_ORDERS} from "./../actions/orders";
-import {ADD_MEAL} from "../actions/meals";
+import {ADD_MEAL, EDIT_MEAL} from "../actions/meals";
 import _ from "lodash";
 
 // Orders reducers
@@ -21,6 +21,26 @@ export default (state = orderReducersDefaultState, action) => {
 						meals: [
 							...meals,
 							action.meal
+						]
+					}
+				} else {
+					return order;
+				}
+			});
+		case EDIT_MEAL:
+			return state.map((order) => {
+				if(order.id === action.updates.orderID) {
+					const meals = [];
+
+					_.map(order.meals, (meal) => meals.push(meal));
+
+					const objIndex = meals.findIndex((meal => meal.id === action.updates.mealID));
+					meals[objIndex] = action.updates;
+
+					return {
+						...order,
+						meals: [
+							...meals
 						]
 					}
 				} else {

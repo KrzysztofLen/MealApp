@@ -9,12 +9,6 @@ enum ErrorMessageEnum {
     correctPrize = "Please provide prize with decimal"
 }
 
-interface IOrder {
-    orderName: string,
-    orderOwner: string,
-    meals?: Array<IMeal>
-}
-
 interface IMeal {
     mealName: string,
     orderer: string,
@@ -22,9 +16,10 @@ interface IMeal {
 }
 
 interface IProps {
-    onSubmit: (meal: IMeal) => void,
+    onSubmit: (updates: any) => void,
     onClose: () => void,
-    order: IOrder
+    order: any,
+    meal: any
 }
 
 interface IState {
@@ -34,13 +29,13 @@ interface IState {
     error: string
 }
 
-class MealsForm extends React.Component<IProps, IState> {
+class MealsEditForm extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
         this.state = {
-            mealName: "",
-            orderer: "John Travolta",
-            prize: "",
+            mealName: this.props.meal.mealName,
+            orderer: this.props.meal.orderer,
+            prize: this.props.meal.prize,
             error: ""
         };
     }
@@ -49,10 +44,10 @@ class MealsForm extends React.Component<IProps, IState> {
         let formIsValid: boolean = true;
         let errors = "";
 
-        if(this.onCheckOrderer()) {
-            formIsValid = false;
-            errors = ErrorMessageEnum.ordererExist;
-        }
+        // if(this.onCheckOrderer()) {
+        //     formIsValid = false;
+        //     errors = ErrorMessageEnum.ordererExist;
+        // }
 
         if(this.onCheckPrize() === false) {
             formIsValid = false;
@@ -88,17 +83,22 @@ class MealsForm extends React.Component<IProps, IState> {
         return (prize) % 1 != 0;
     }
 
-    onCheckOrderer = () => {
-        let ordererExist: boolean = false;
-
-        _.mapValues(this.props.order.meals, (meal: IMeal) => {
-            if (meal.orderer == this.state.orderer) {
-                ordererExist = true;
-            }
-        });
-
-        return ordererExist;
-    }
+    // onCheckOrderer = () => {
+    //     let ordererExist: boolean = false;
+    //
+    //     _.mapValues(this.props.order.meals, (meal: IMeal) => {
+    //         //console.log(this.props.meal.orderer); // obecnego
+    //         //console.log(this.state.orderer); // obecnego
+    //         console.log(meal.orderer); // obecnego
+    //
+    //         if (meal.orderer === this.state.orderer) {
+    //             //console.log(true)
+    //             // ordererExist = true;
+    //         }
+    //     });
+    //
+    //     return ordererExist;
+    // }
 
     onSubmit = (e: any) => {
         e.preventDefault();
@@ -107,7 +107,9 @@ class MealsForm extends React.Component<IProps, IState> {
             this.props.onSubmit({
                 mealName: this.state.mealName,
                 orderer: this.state.orderer,
-                prize: this.state.prize
+                prize: this.state.prize,
+                orderID: this.props.meal.orderID,
+                mealID: this.props.meal.id
             })
         } else {
             console.warn("Invalid");
@@ -123,7 +125,7 @@ class MealsForm extends React.Component<IProps, IState> {
 
                         <div className={"form__control"}>
                             <label className={"form__label"} htmlFor="">Meal name</label>
-                            <input type="text" placeholder={"Name of the meal"} onChange={this.onMealNameChange}/>
+                            <input type="text" value={this.state.mealName} placeholder={"Name of the meal"} onChange={this.onMealNameChange}/>
                         </div>
 
                         <div className={"form__control"}>
@@ -137,12 +139,12 @@ class MealsForm extends React.Component<IProps, IState> {
 
                         <div className={"form__control"}>
                             <label className={"form__label"} htmlFor="">Prize</label>
-                            <input type="text" placeholder={"e.g. 20.00"} onChange={this.onMealPrizeChange}/>
+                            <input value={this.state.prize} type="text" placeholder={"e.g. 20.00"} onChange={this.onMealPrizeChange}/>
                         </div>
 
                         <div className={"form__buttons"}>
                             <button onClick={this.props.onClose} color="primary">Cancel</button>
-                            <button className={"form__submit"}>Add</button>
+                            <button className={"form__submit"}>Edit</button>
                         </div>
                     </form>
                 </div>
@@ -151,4 +153,4 @@ class MealsForm extends React.Component<IProps, IState> {
     }
 }
 
-export default MealsForm;
+export default MealsEditForm;

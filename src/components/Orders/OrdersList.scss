@@ -3,9 +3,29 @@
 	box-shadow: 5px 5px 5px -2px rgba(0, 0, 0, 0.2);
 	margin-bottom: 15px;
 
+	max-height: 60px;
+	transition: max-height .4s;
+	overflow: hidden;
+
+	cursor: pointer;
+
+	&.open {
+		max-height: 2000px;
+	}
+
 	&__values {
 		display: flex;
 		padding: 20px 10px;
+
+		&:hover {
+			background: #cfcfcf;
+		}
+	}
+
+	&__icon {
+		width: 20%;
+		display: flex;
+		justify-content: flex-end;
 	}
 
 	&__status {
@@ -25,7 +45,6 @@
 		border-left: 1px solid $lightGrey-2;
 		padding-left: 10px;
 		box-sizing: border-box;
-
 	}
 
 	&__list {
@@ -36,6 +55,7 @@
 		border-left: 1px solid $lightGrey-2;
 		padding-left: 10px;
 		box-sizing: border-box;
+		width: 20%;
 	}
 
 	&__statuses {

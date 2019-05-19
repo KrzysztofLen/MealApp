@@ -1,36 +1,8 @@
 .navigation {
-	height: 52px;
-	margin: 0 100px;
 	list-style: none;
 	padding: 0;
 	display: flex;
 	align-items: center;
-
-	&__item {
-		position: relative;
-		display: block;
-		height: 30px;
-		padding: 10px 20px 0 20px;
-		font-size: 18px;
-		text-align: center;
-		text-decoration: none;
-		background: transparent;
-		transition: padding 0.2s ease, margin 0.2s ease;
-
-		&--active {
-			margin: 0;
-			padding: 10px 20px 10px 20px;
-			background: $tabsBackground;
-			color: $textColor;
-			z-index: 9999999;
-			outline: none;
-			border-left: 1px solid $lightGrey;
-			border-top: 1px solid $lightGrey;
-			border-right: 1px solid $lightGrey;
-			border-bottom: 2px solid $tabsBackground;
-			border-radius: 5px 5px 0 0
-		}
-	}
 
 	&__link {
 		text-decoration: none;

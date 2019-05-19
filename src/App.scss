@@ -13,6 +13,7 @@
 @import "components/Orders/OrdersSummary";
 @import "components/Orders/OrdersForm";
 @import "components/Orders/OrdersList";
+@import "components/Loader/Loader";
 @import "components/Navigation/Navigation";
 
 body {
@@ -30,8 +31,11 @@ body {
 	font-weight: 200;
 }
 
-.content {
-	background-color: $tabsBackground;
-	border-top: 1px solid $lightGrey;
+.meals_app {
 	padding: 40px 100px;
+}
+
+.spinner {
+	background: #ffdd57;
+	height: 100vh;
 }

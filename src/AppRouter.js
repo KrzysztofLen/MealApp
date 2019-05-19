@@ -10,7 +10,7 @@ class AppRouter extends React.Component {
 	render() {
 		return (
 			<Router>
-				<div className={"hotel-app"}>
+				<div>
 					<Header/>
 					<Switch>
 						{/*<Route path="/" exact component={OrdersView} title="Index Page"/>*/}
