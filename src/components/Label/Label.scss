@@ -1,0 +1,24 @@
+.labels {
+	display: flex;
+	text-align: left;
+	margin-top: 40px;
+	margin-bottom: 10px;
+
+	&__label {
+		font-size: 12px;
+		padding-left: 10px;
+		color: $primaryColor;
+
+		&:first-child {
+			width: 40%;
+		}
+
+		&:nth-child(2) {
+			width: 20%;
+		}
+
+		&:last-child {
+			width: 40%;
+		}
+	}
+}

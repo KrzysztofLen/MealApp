@@ -1,44 +1,46 @@
 import React from "react";
 import {connect} from "react-redux";
+
+import {OrdersEnum, ordersLabels} from "../../main";
+
 import OrdersList from "./OrdersList";
-import {OrdersEnum} from "../../main";
+import Message, {MessageType} from "../Message/Message";
+import Label from "../Label/Label";
 
 interface IOrder {
-    orderName: string,
-    orderOwner: string,
-    status?: string
+  orderName: string;
+  orderOwner: string;
+  status?: string;
 }
 
 interface IProps {
-    orders: Array<IOrder>,
-    history?: boolean
+  orders: Array<IOrder>;
+  history?: boolean;
 }
 
 class OrdersSummary extends React.Component<IProps, {}> {
-    public render(): JSX.Element {
-        if (this.props.orders.length === 0) {
-            return (
-                <article className={"message is-info"}>
-                    <div className={"message-body"}>
-                        {OrdersEnum.noOrder}
-                    </div>
-                </article>
-            )
-        }
+  public render(): JSX.Element {
+    return (
+      <React.Fragment>
+        {this.props.orders.length === 0 ? (
+          <Message message={OrdersEnum.noOrder} type={MessageType.info}/>
+        ) : (
+          <Label labels={ordersLabels} />
+        )}
 
-        return (
-            <React.Fragment>
-                <div className={"ordersSummary__labels"}>
-                    <label className={"ordersSummary__orderLabel"}>Order from</label>
-                    <label className={"ordersSummary__ownerLabel"}>Owner</label>
-                    <label className={"ordersSummary__prizeLabel"}>Prize</label>
-                </div>
-                {this.props.orders.map((order: any, idx: number) => {
-                    return <OrdersList key={order.id} id={idx} history={this.props.history} {...order}/>
-                })}
-            </React.Fragment>
-        )
-    }
+        {this.props.orders.map((order: IOrder, idx: number) => {
+          return (
+            <OrdersList
+              key={idx}
+              id={idx}
+              history={this.props.history}
+              {...order}
+            />
+          );
+        })}
+      </React.Fragment>
+    );
+  }
 }
 
 export default OrdersSummary;
