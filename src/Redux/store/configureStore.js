@@ -8,7 +8,7 @@ export default () => {
 	// Store creation
 	const store = createStore(
 		combineReducers({
-			order: ordersReducer
+			orders: ordersReducer
 		}),
 		composeEnhancers(applyMiddleware(thunk))
 	);
